@@ -8,4 +8,6 @@ function [x, y] = findCenter (Image)
 
 	x = find(xSum == max(xSum));
 	y = find(ySum == max(ySum));
+	x = x(1);
+	y = y(1);
 end
