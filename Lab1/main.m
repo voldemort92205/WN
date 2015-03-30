@@ -6,7 +6,7 @@ close all
 n = size(filename, 1);
 color = [];
 for i = 1:n 
-	tmp = decode (filename{1});
+	tmp = decode (filename{i});
 	%combine old and new message
 	if size(color, 1) == 0
 		color = tmp;
