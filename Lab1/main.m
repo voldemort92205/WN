@@ -1,0 +1,22 @@
+clear all
+close all
+
+
+[filename] = textread ('image.txt', '%s');
+n = size(filename, 1);
+color = [];
+for i = 1:n 
+	tmp = decode (filename{1});
+	%combine old and new message
+	if size(color, 1) == 0
+		color = tmp;
+	else
+		color = [color, tmp];
+	end
+	%if message over 3, convert some message
+	if size(color, 1) >= 3
+		color = printInfo(color);
+	end
+
+end
+fprintf ('\n');
