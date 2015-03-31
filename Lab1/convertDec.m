@@ -1,7 +1,6 @@
 function [dec] = convertDec(color)
 	n = size(color, 2);
 	dec = zeros(n, 1);
-
 	for i = 1:n
 		switch color(i) 
 			case 1
