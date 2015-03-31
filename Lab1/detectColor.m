@@ -1,7 +1,11 @@
 function [info, type] = detectColor(red, green, blue)
+	%type : num of color
+	%info : indicate color order
+
+
 	thread = 100;
-	tail = size(red);
-	info = zeros(tail(1), 1);
+	tail = size(red, 1);
+	info = zeros(tail, 1);
 	record = zeros(7, 1);
 	% 0 for dark, 1 for red, 2 for green, 3 for blue
 	% 4 yello (r+g), 5 purple(r+b), 6 white(r+g+b)

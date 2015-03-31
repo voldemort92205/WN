@@ -9,9 +9,6 @@ function [infomation] = decode (image)
 	%high determine the first is bright or darker
 	%if high is 1, it is bright, if 0, it is dark
 	for i = 1:3
-		[count, high]= countStrip(I1(:, y, i));
-		width = zeros(count, 1);
-		[width] = countStripWidth (I1(:, y, i), count);
 		subplot(2,2 , i);
 		grid on
 		plot(1:row, I1(:, y, i));
@@ -22,10 +19,11 @@ function [infomation] = decode (image)
 		elseif i == 3
 			title ('Blue');
 		end
+		[count, high]= countStrip(I1(:, y, i));
+		width = zeros(count, 1);
+		[width] = countStripWidth (I1(:, y, i), count);
 	end
 
-%info => change to color type code
-%
 	[info, type] = detectColor(I1(:, y, 1), I1(:, y, 2), I1(:, y, 3));
 	num = colorStrip(info);
 	[colorWidth, info]  = decodeColor(info, num);
