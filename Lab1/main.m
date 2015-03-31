@@ -11,9 +11,10 @@ for i = 1:n
 	if size(color, 1) == 0
 		color = tmp;
 	else
-		color = [color, tmp];
+		color = [color; tmp];
 	end
 	%if message over 3, convert some message
+	size(color);
 	if size(color, 1) >= 3
 		color = printInfo(color);
 	end
