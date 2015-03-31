@@ -1,9 +1,13 @@
 function [width] = countStripWidth(Image, num)
+	%width : the width of bright and dark
+	% first is bright
+	
+	
 	tail = size(Image);
 	width = zeros(num, 1);
 	current = 1;
 	status = 0;
-	%0 for not start, 1 for low, 2 for high
+	%status : 0 for not start, 1 for low, 2 for high
 	for i = 1:tail
 		if (status ~= 0)
 			if (status == 1 & Image(i) >= 100)

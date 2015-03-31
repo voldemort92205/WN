@@ -1,12 +1,13 @@
 function [info, type] = detectColor(red, green, blue)
 	%type : num of color
-	%info : indicate color order
+	%info : indicate color order, auto plus 1 for dark
 
 
 	thread = 100;
 	tail = size(red, 1);
 	info = zeros(tail, 1);
 	record = zeros(7, 1);
+
 	% 0 for dark, 1 for red, 2 for green, 3 for blue
 	% 4 yello (r+g), 5 purple(r+b), 6 white(r+g+b)
 	for i = 1:tail
@@ -22,9 +23,7 @@ function [info, type] = detectColor(red, green, blue)
 		if (blue(i) >= thread)
 			b = 1;
 		end
-
 		pattern = r * 4 + g * 2 + b;
-		
 		switch pattern
 			case 0
 				%dark
