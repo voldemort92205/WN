@@ -7,18 +7,18 @@ function [information, status] = decode (filename, threshold, status)
 	[row, col, high] = size(image);
 	[x, y] = findCenter(image(:, :, 1));
 
-	for i = 1:3
-		subplot (2, 2, i);
-		plot (image(:, y, i));
-		switch i
-			case 1
-				title ('red');
-			case 2
-				title ('green');
-			case 3
-				title ('blue');
-		end
-	end
+%	for i = 1:3
+%		subplot (2, 2, i);
+%		plot (image(:, y, i));
+%		switch i
+%			case 1
+%				title ('red');
+%			case 2
+%				title ('green');
+%			case 3
+%				title ('blue');
+%		end
+%	end
 
 	%transfere to gray scale
 	[red] = colorStripDetect (image(:, y, 1), threshold);	

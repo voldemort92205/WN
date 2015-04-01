@@ -1,7 +1,9 @@
 clear all
 close all
 
-threshold = 120;
+%threshold = 120;
+warning = 'Input your threshold : ';
+threshold = input (warning);
 [filename] = textread ('image.txt', '%s');
 n = size(filename, 1);
 color = [];

@@ -93,9 +93,35 @@ function [colorType, width] = colorCombine(red, green, blue)
 		width(currentFlag) = width(currentFlag)+1;
 	end
 	
-	
-	
+%width
+%colorType
+%pause();	
 	%clear noise
+	
+	tmpColor = linspace(0, 0, total+1);
+	tmpWidth = linspace(0, 0, total+1);
+	tmpWidth(1) = width(1);
+	tmpColor(1) = colorType(1);
+	bbb = 2;
+	aaa = 0;
+	for i = 2:total
+		if (width(i) < 10)
+			aaa = aaa + width(i);
+		elseif (width(i) >= 10)
+			tmpWidth(bbb) = width(i) + aaa;
+			tmpColor(bbb) = colorType(i);
+			bbb = bbb + 1;
+			aaa = 0;
+		end
+	end
+	tmpWidth(bbb) = width(total+1) + aaa;
+	tmpColor(bbb) = colorType(total+1);
+	colorType = tmpColor(1:bbb);
+	width = tmpWidth(1:bbb);
+	
+%	tmpColor
+%	tmpWidth
+
 
 	darker = find (colorType == 0);
 	tmpColor = linspace(0, 0, total+1);
@@ -108,6 +134,8 @@ function [colorType, width] = colorCombine(red, green, blue)
 %		fprintf ('error width is : %d\n', width(darker(i) + err));
 		tmpColor((2*i-1):(2*i)) = [colorType(darker(i)), colorType(darker(i)+err)];
 		tmpWidth((2*i-1):(2*i)) = [width(darker(i)), width(darker(i)+err)];	
+
+		tmpWidth(2*i) = sum(width((darker(i)+1):(darker(i+1)-1)));
 	end
 	if darker(n) == total+1
 		tmpColor(2*n-1) = colorType(darker(n));
@@ -119,11 +147,11 @@ function [colorType, width] = colorCombine(red, green, blue)
 		err = err(1);
 		tmpColor((2*n-1):(2*n)) = [colorType(darker(n)), colorType(darker(n)+err)];
 		tmpWidth((2*n-1):(2*n)) = [width(darker(n)), width(darker(n)+err)];	
+		tmpWidth(2*n) = sum(width((darker(n)+1):end));
 		final = 2 * n;
 	end
 	colorType = tmpColor(1:final);
 	width = tmpWidth (1:final);
 
 %	printColor(colorType, width);
-
 end

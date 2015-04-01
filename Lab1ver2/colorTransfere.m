@@ -1,10 +1,11 @@
 function [Status, information] = colorTransfere (color, width, status, signal)
-	
+	test = 0;	
 	n = size(color, 2);
-	threshold = 255;
+	threshold = 233;
 	if signal == 1
 		%have signal
 		if status == 0
+			current = -1;
 			%not yet get information
 			tmp = find(width == max(width));
 			tmp = tmp(1);
@@ -14,8 +15,15 @@ function [Status, information] = colorTransfere (color, width, status, signal)
 					break;
 				end
 			end
-			tmpColor = color(current:end);
-			tmpWidth = width(current:end);
+			if current ~= -1
+				tmpColor = color(current:end);
+				tmpWidth = width(current:end);
+			elseif current == -1
+				tmpColor = [];
+				tmpWidth = [];
+				test = -1;
+			end
+
 		elseif status == 1
 			%means to finish
 			tmp = find(width == max(width));
@@ -54,6 +62,9 @@ function [Status, information] = colorTransfere (color, width, status, signal)
 	elseif n == 0
 		Status = 0;
 		information = [];
+		if test == -1
+			Status = 1;
+		end
 	end
 
 
