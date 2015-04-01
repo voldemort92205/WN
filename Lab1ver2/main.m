@@ -8,7 +8,7 @@ color = [];
 status = 0;
 for i = 1:n 
 	
-	fprintf ('filename : %s\n',filename{i} );
+%	fprintf ('filename : %s\n',filename{i} );
 	[tmp, status]  = decode (filename{i}, threshold, status);
 	%combine old and new message
 	if size(color, 1) == 0
@@ -18,8 +18,9 @@ for i = 1:n
 	end
 	%if message over 3, convert some message
 	if size(color, 2) >= 4
-	%	[color] = printInfo(color);
+		[color] = printInfo(color);
 	end
 %	color
+%pause()
 end
 fprintf ('\n');

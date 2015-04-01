@@ -37,5 +37,9 @@ function [information, status] = decode (filename, threshold, status)
 	[color, width] = colorCombine(red, green, blue);
 	[signal] = detectSignal (color, width);
 	[status, information] = colorTransfere (color, width, status, signal);
-	information	
+%	color 
+%	width
+%	printColor(color, width);
+%	information
+%	pause()
 end

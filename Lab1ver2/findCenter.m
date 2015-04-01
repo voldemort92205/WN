@@ -13,4 +13,11 @@ function [x, y] = findCenter (Image)
 	y = find(ySum == max(ySum));
 	x = x(1);
 	y = y(1);
+
+
+
+
+	%for test
+%	x = (row-mod(row,2))/2;
+%	y = (col-mod(col,3))/3;
 end

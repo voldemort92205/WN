@@ -4,7 +4,7 @@ function [answer] = detectSignal(color, width)
 	%else answer is 0
 	%status means wheter getting information before
 	%
-	threadshold = 230;
+	threadshold = 233;
 	maximum = max(width);
 	maximum = maximum(1);
 	if (maximum > threadshold)
