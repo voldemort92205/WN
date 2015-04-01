@@ -1,5 +1,8 @@
 function printColor(color, width)
+	%optioinal color
+	%use it to print color since the variable color is the number of color we define
 
+	
 	n = size(color, 2);
 	for i = 1:n
 		if width(i) > 0
