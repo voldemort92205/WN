@@ -1,27 +1,25 @@
 clear all
 close all
 
-
+threshold = 120;
 [filename] = textread ('image.txt', '%s');
 n = size(filename, 1);
 color = [];
-begin = 0;
-stop = 1;
+status = 0;
 for i = 1:n 
 	
-%	fprintf ('filename : %s\n',filename{i} );
-	[tmp, begin, stop]  = decode (filename{i}, begin, stop);
+	fprintf ('filename : %s\n',filename{i} );
+	[tmp, status]  = decode (filename{i}, threshold, status);
 	%combine old and new message
 	if size(color, 1) == 0
 		color = tmp;
 	else
-		color = [color; tmp];
+		color = [color, tmp];
 	end
 	%if message over 3, convert some message
-	size(color);
-	if size(color, 1) >= 4
-		color = printInfo(color);
+	if size(color, 2) >= 4
+	%	[color] = printInfo(color);
 	end
-
+%	color
 end
 fprintf ('\n');
