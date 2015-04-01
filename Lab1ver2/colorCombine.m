@@ -47,12 +47,9 @@ function [colorType, width] = colorCombine(red, green, blue)
 				%dark
 				type(i) = 0;
 		end
-		%fprintf ('status : %d, type(%d) : %d\n', status, i, type(i));
 	end
-%subplot (2, 2, 4);
-%plot (type);
 
-
+	%count how many color
 	status = type(1);
 	total = 1;
 	for i = 2:n
@@ -65,6 +62,8 @@ function [colorType, width] = colorCombine(red, green, blue)
 		total = total - 1;
 	end
 
+
+	%set color type and the width of each color
 	colorType = linspace(0, 0, total+1);
 	width = linspace(0, 0, total+1);
 
@@ -84,7 +83,6 @@ function [colorType, width] = colorCombine(red, green, blue)
 	
 	for i = 1:n
 		if (type(i) ~= status)			
-%			fprintf ('flag = %d at %d, current : %d, next is %d\n', currentFlag, i, status, type(i));
 			currentFlag = currentFlag + 1;
 			colorType(currentFlag) = type(i);
 			status = type(i);
@@ -93,9 +91,6 @@ function [colorType, width] = colorCombine(red, green, blue)
 		width(currentFlag) = width(currentFlag)+1;
 	end
 	
-%width
-%colorType
-%pause();	
 	%clear noise
 	
 	tmpColor = linspace(0, 0, total+1);
@@ -119,10 +114,8 @@ function [colorType, width] = colorCombine(red, green, blue)
 	colorType = tmpColor(1:bbb);
 	width = tmpWidth(1:bbb);
 	
-%	tmpColor
-%	tmpWidth
-
-
+%   between two dark strip , there should be only one kind of color
+%   if not, choose the widest color
 	darker = find (colorType == 0);
 	tmpColor = linspace(0, 0, total+1);
 	tmpWidth = linspace(0, 0, total+1);
@@ -153,5 +146,4 @@ function [colorType, width] = colorCombine(red, green, blue)
 	colorType = tmpColor(1:final);
 	width = tmpWidth (1:final);
 
-%	printColor(colorType, width);
 end
