@@ -2,6 +2,9 @@ function rx_out = phaseTrack(rx_in, tx_in, cf)
 	% figure(cf) can use to plot process of phaseTrack
 	% TODO
 	
+	fprintf('the cf is : \n');
+
+
     rx_buf = rx_in;
     tx_buf = tx_in;
     
